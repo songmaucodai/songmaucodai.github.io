@@ -76,7 +76,6 @@
             align-items: center;
         }
 
-        /* Nút Trigger chính */
         .donate-trigger {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -96,7 +95,7 @@
 
         .donate-trigger:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: #ef4444; /* Viền đỏ nhẹ khi hover */
+            border-color: #ef4444;
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
         }
@@ -107,7 +106,6 @@
             color: #fca5a5;
         }
 
-        /* Khối chứa các nút Donate (Ẩn mặc định) */
         .donate-options {
             max-height: 0;
             opacity: 0;
@@ -120,14 +118,12 @@
             width: 100%;
         }
 
-        /* Khi class .show được thêm vào */
         .donate-options.show {
-            max-height: 150px; /* Đủ để hiện nội dung */
+            max-height: 150px;
             opacity: 1;
             margin-top: 15px;
         }
 
-        /* Style các nút con */
         .donate-btn {
             display: flex;
             align-items: center;
@@ -328,11 +324,12 @@
         </div>
 
         <footer>
-            &copy; 2025 songmaucodai.online
+            &copy; <span id="year"></span> songmaucodai
         </footer>
     </div>
 
     <script>
+        // 1. Logic Accordion cho nút Donate
         const donateBtn = document.getElementById('donate-toggle');
         const donateOptions = document.getElementById('donate-options');
         const iconChevron = donateBtn.querySelector('.fa-chevron-down');
@@ -349,6 +346,9 @@
                 iconChevron.style.transform = 'rotate(0deg)';
             }
         });
+
+        // 2. Logic tự động lấy năm cho Footer
+        document.getElementById("year").textContent = new Date().getFullYear();
     </script>
 
 </body>
