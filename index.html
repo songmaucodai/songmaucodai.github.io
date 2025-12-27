@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Songmaucodai - Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --hover-bg: rgba(255, 255, 255, 0.1);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            color: var(--text-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Avatar / Logo */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #38bdf8, #818cf8);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            color: white;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        p.bio {
+            color: var(--text-sub);
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Grid dự án */
+        .grid {
+            display: grid;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            background: var(--hover-bg);
+            transform: translateY(-3px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-right: 15px;
+            color: var(--accent);
+        }
+
+        .card-content {
+            text-align: left;
+            flex: 1;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+        }
+
+        /* Social Links */
+        .socials {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: var(--text-sub);
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="avatar">
+            <i class="fa-solid fa-code"></i>
+        </div>
+
+        <h1>songmaucodai</h1>
+        <p class="bio">
+            Chào mừng đến với trang cá nhân của tôi.<br>
+            Nơi lưu trữ các công cụ, dự án và thông tin cá nhân.
+        </p>
+
+        <div class="grid">
+            
+            <a href="/info" class="card">
+                <div class="card-icon">
+                    <i class="fa-regular fa-id-card"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-title">Personal Info</span>
+                    <span class="card-desc">Thông tin cá nhân & Hồ sơ</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #475569;"></i>
+            </a>
+
+            <a href="/us-teacher-paystub" class="card">
+                <div class="card-icon">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-title">Pay Stub Generator</span>
+                    <span class="card-desc">Công cụ tạo phiếu lương US K-12 (Smart Logic)</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="color: #475569;"></i>
+            </a>
+
+            <a href="https://www.youtube.com/@HieuNier" target="_blank" class="card">
+                <div class="card-icon">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <div class="card-content">
+                    <span class="card-title">Hieu Nier</span>
+                    <span class="card-desc">Kênh cảm âm Karaoke & Nhạc cụ</span>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color: #475569;"></i>
+            </a>
+
+        </div>
+
+        <div class="socials">
+            <a href="https://github.com/songmaucodai" target="_blank" class="social-link" title="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="mailto:your-email@example.com" class="social-link" title="Email">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+        </div>
+
+        <footer>
+            &copy; 2025 songmaucodai.online
+        </footer>
+    </div>
+
+</body>
+</html>
