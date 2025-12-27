@@ -6,6 +6,7 @@
     <title>Songmaucodai - Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     
     <style>
         :root {
@@ -57,20 +58,13 @@
 
         h1 {
             font-size: 2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
             font-weight: 600;
-        }
-
-        p.bio {
-            color: var(--text-sub);
-            margin-bottom: 25px;
-            font-size: 1rem;
-            line-height: 1.5;
         }
 
         /* --- PHẦN DONATE (Accordion Style) --- */
         .donate-container {
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -146,6 +140,24 @@
         .btn-paypal { background-color: #00457C; }
         .btn-patreon { background-color: #FF424D; }
 
+        /* Đường kẻ phân cách */
+        hr.divider {
+            border: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 25px 0;
+            width: 100%;
+        }
+
+        /* Phần mô tả */
+        p.bio {
+            color: var(--text-sub);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
         /* Grid dự án */
         .grid {
             display: grid;
@@ -208,7 +220,7 @@
             display: flex;
             justify-content: center;
             gap: 25px;
-            margin-top: 35px;
+            margin-top: 25px;
         }
 
         .social-link {
@@ -221,10 +233,22 @@
             color: var(--accent);
         }
 
+        /* Footer Style */
         footer {
-            margin-top: 40px;
+            margin-top: 50px;
             font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.6;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
         }
     </style>
 </head>
@@ -236,10 +260,6 @@
         </div>
 
         <h1>songmaucodai</h1>
-        <p class="bio">
-            Chào mừng đến với trang cá nhân của tôi.<br>
-            Kho lưu trữ các công cụ & tài nguyên hữu ích.
-        </p>
 
         <div class="donate-container">
             <button id="donate-toggle" class="donate-trigger">
@@ -260,6 +280,13 @@
                 </a>
             </div>
         </div>
+
+        <hr class="divider">
+
+        <p class="bio">
+            Chào mừng đến với trang cá nhân của tôi.<br>
+            Kho lưu trữ các công cụ & tài nguyên hữu ích.
+        </p>
 
         <div class="grid">
             
@@ -309,6 +336,8 @@
 
         </div>
 
+        <hr class="divider">
+
         <div class="socials">
             <a href="https://github.com/songmaucodai" target="_blank" class="social-link" title="GitHub">
                 <i class="fa-brands fa-github"></i>
@@ -324,7 +353,12 @@
         </div>
 
         <footer>
-            &copy; <span id="year"></span> songmaucodai
+            <div>
+                &copy; <span id="copyright-year"></span> <strong>songmaucodai</strong>. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+            </div>
         </footer>
     </div>
 
@@ -347,8 +381,18 @@
             }
         });
 
-        // 2. Logic tự động lấy năm cho Footer
-        document.getElementById("year").textContent = new Date().getFullYear();
+        // 2. Logic tự động lấy dải năm cho Footer
+        // --- CẤU HÌNH NĂM BẮT ĐẦU CỦA BẠN TẠI ĐÂY ---
+        const startYear = 2023; 
+        
+        const currentYear = new Date().getFullYear();
+        const yearSpan = document.getElementById('copyright-year');
+
+        if (currentYear > startYear) {
+            yearSpan.textContent = `${startYear} - ${currentYear}`;
+        } else {
+            yearSpan.textContent = currentYear;
+        }
     </script>
 
 </body>
