@@ -40,13 +40,13 @@
             text-align: center;
         }
 
-        /* Avatar / Logo */
+        /* Avatar */
         .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             background: linear-gradient(45deg, #38bdf8, #818cf8);
-            margin: 0 auto 20px;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -63,10 +63,92 @@
 
         p.bio {
             color: var(--text-sub);
-            margin-bottom: 2.5rem;
+            margin-bottom: 25px;
             font-size: 1rem;
             line-height: 1.5;
         }
+
+        /* --- PHẦN DONATE (Accordion Style) --- */
+        .donate-container {
+            margin-bottom: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Nút Trigger chính */
+        .donate-trigger {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 10px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            outline: none;
+        }
+
+        .donate-trigger:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ef4444; /* Viền đỏ nhẹ khi hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+        }
+        
+        .donate-trigger.active {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #fca5a5;
+        }
+
+        /* Khối chứa các nút Donate (Ẩn mặc định) */
+        .donate-options {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        /* Khi class .show được thêm vào */
+        .donate-options.show {
+            max-height: 150px; /* Đủ để hiện nội dung */
+            opacity: 1;
+            margin-top: 15px;
+        }
+
+        /* Style các nút con */
+        .donate-btn {
+            display: flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.2s, opacity 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .donate-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .btn-kofi { background-color: #29abe0; }
+        .btn-paypal { background-color: #00457C; }
+        .btn-patreon { background-color: #FF424D; }
 
         /* Grid dự án */
         .grid {
@@ -127,10 +209,10 @@
 
         /* Social Links */
         .socials {
-            margin-top: 30px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
+            margin-top: 35px;
         }
 
         .social-link {
@@ -144,7 +226,7 @@
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: 40px;
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.3);
         }
@@ -162,6 +244,26 @@
             Chào mừng đến với trang cá nhân của tôi.<br>
             Kho lưu trữ các công cụ & tài nguyên hữu ích.
         </p>
+
+        <div class="donate-container">
+            <button id="donate-toggle" class="donate-trigger">
+                <i class="fa-solid fa-heart" style="color: #ef4444;"></i> 
+                <span>Support My Work</span>
+                <i class="fa-solid fa-chevron-down" style="font-size: 0.8em; margin-left: 5px; opacity: 0.7;"></i>
+            </button>
+            
+            <div id="donate-options" class="donate-options">
+                <a href="https://ko-fi.com/songmaucodai" target="_blank" class="donate-btn btn-kofi">
+                    <i class="fa-solid fa-mug-hot" style="margin-right:8px"></i> Ko-fi
+                </a>
+                <a href="https://www.paypal.com/paypalme/songmaucodai" target="_blank" class="donate-btn btn-paypal">
+                    <i class="fa-brands fa-paypal" style="margin-right:8px"></i> PayPal
+                </a>
+                <a href="https://patreon.com/songmaucodai_" target="_blank" class="donate-btn btn-patreon">
+                    <i class="fa-brands fa-patreon" style="margin-right:8px"></i> Patreon
+                </a>
+            </div>
+        </div>
 
         <div class="grid">
             
@@ -215,8 +317,13 @@
             <a href="https://github.com/songmaucodai" target="_blank" class="social-link" title="GitHub">
                 <i class="fa-brands fa-github"></i>
             </a>
+            
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=songmaucodai@gmail.com" target="_blank" class="social-link" title="Gửi Email">
                 <i class="fa-solid fa-envelope"></i>
+            </a>
+
+            <a href="https://t.me/songmaucodai" target="_blank" class="social-link" title="Telegram">
+                <i class="fa-brands fa-telegram"></i>
             </a>
         </div>
 
@@ -224,6 +331,25 @@
             &copy; 2025 songmaucodai.online
         </footer>
     </div>
+
+    <script>
+        const donateBtn = document.getElementById('donate-toggle');
+        const donateOptions = document.getElementById('donate-options');
+        const iconChevron = donateBtn.querySelector('.fa-chevron-down');
+
+        donateBtn.addEventListener('click', () => {
+            donateOptions.classList.toggle('show');
+            donateBtn.classList.toggle('active');
+            
+            // Xoay icon mũi tên
+            if (donateOptions.classList.contains('show')) {
+                iconChevron.style.transform = 'rotate(180deg)';
+                iconChevron.style.transition = 'transform 0.3s';
+            } else {
+                iconChevron.style.transform = 'rotate(0deg)';
+            }
+        });
+    </script>
 
 </body>
 </html>
