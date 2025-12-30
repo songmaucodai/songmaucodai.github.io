@@ -4,7 +4,7 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![FontAwesome](https://img.shields.io/badge/Font%20Awesome-528DD7?style=for-the-badge&logo=font-awesome&logoColor=white)
 
-Đây là mã nguồn cho trang chủ cá nhân (Landing Page) tại địa chỉ **[HOME](https://songmaucodai.github.io)**.
+Đây là mã nguồn cho trang chủ cá nhân (Landing Page) tại địa chỉ **[songmaucodai.***](https://songmaucodai.github.io)**.
 
 Trang web đóng vai trò là "Tổng hành dinh" (Central Hub), giúp điều hướng người dùng đến các dự án, công cụ và thông tin liên hệ của tôi.
 
