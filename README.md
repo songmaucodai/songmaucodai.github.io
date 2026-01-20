@@ -28,7 +28,7 @@ Trang web đóng vai trò là "Tổng hành dinh" (Central Hub), giúp điều h
 
 ## Liên kết
 
-- **Trang chủ:** [https://songmaucodai.online](https://songmaucodai.github.io)
+- **Trang chủ:** [https://songmaucodai.***](https://songmaucodai.github.io)
 - **GitHub:** [https://github.com/songmaucodai](https://github.com/songmaucodai)
 
 ---
