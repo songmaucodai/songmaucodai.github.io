@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển Nhà - songmaucodai</title>
+    
+    <link rel="stylesheet" href="https://dl.songmaucodai.com/global.css">
+    
+    <link rel="icon" href="https://songmaucodai.com/favicon.ico" type="image/x-icon">
+    
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bgBase);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* CHỮ CHUYỂN NHÀ THEO ĐÚNG MẪU BÁC GỬI */
+        h1 {
+            font-size: 3.0rem;
+            margin: 0 0 40px 0;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            
+            background: linear-gradient(135deg, var(--textMain) 30%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            
+            animation: textPulse 4s ease-in-out infinite, fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* KHỐI TERMINAL "QUỐC DÂN" XỊN SÒ TRỞ LẠI */
+        .terminal {
+            background: var(--bgPanel);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 20px 25px;
+            width: 100%;
+            max-width: 500px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #abb2bf;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            text-align: left;
+            position: relative;
+            animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both 0.2s;
+        }
+
+        /* 3 Nút Mac Xanh Đỏ Vàng */
+        .terminal::before {
+            content: '';
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f56;
+            box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+            margin-bottom: 25px;
+        }
+
+        .line-wrapper {
+            margin-bottom: 6px;
+        }
+
+        /* Bảng màu cú pháp Code Editor */
+        .prompt { color: #c678dd; margin-right: 10px; font-weight: bold; }
+        .keyword { color: #c678dd; }
+        .variable { color: #e5c07b; }
+        .function { color: #61afef; }
+        .string { color: #98c379; }
+        .output { color: var(--teal); font-weight: bold; font-size: 1.05rem; }
+        
+        #cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background-color: #528bff;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        /* KEYFRAMES */
+        @keyframes textPulse {
+            0%, 100% { opacity: 1; filter: brightness(1); }
+            50% { opacity: 0.85; filter: brightness(1.1); }
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink { 
+            0%, 100% { opacity: 1; } 
+            50% { opacity: 0; } 
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            h1 { font-size: 2.2rem; letter-spacing: -1px; margin-bottom: 30px; }
+            .terminal { padding: 15px 20px; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Nhà Chính Thức</h1>
+    
+    <div class="terminal">
+        <div id="typewriter"></div>
+        <span id="cursor"></span>
+    </div>
+
+    <script>
+        const b64 = "c29uZ21hdWNvZGFpLmNvbQ==";
+        
+        const lines = [
+            { type: 'input', text: `const target = atob("${b64}");` },
+            { type: 'input', text: 'console.log(target);' },
+            { type: 'output', text: '> "songmaucodai.com"' }
+        ];
+
+        const typeWriterEl = document.getElementById('typewriter');
+        let currentLine = 0;
+        
+        function syntaxHighlight(text) {
+            return text
+                .replace('const', '<span class="keyword">const</span>')
+                .replace('target', '<span class="variable">target</span>')
+                .replace('atob', '<span class="function">atob</span>')
+                .replace('console', '<span class="function">console</span>')
+                .replace('log', '<span class="function">log</span>')
+                .replace(`"${b64}"`, `<span class="string">"${b64}"</span>`);
+        }
+
+        async function typeLine() {
+            if (currentLine >= lines.length) return;
+            
+            const line = lines[currentLine];
+            const lineDiv = document.createElement('div');
+            lineDiv.className = 'line-wrapper';
+            
+            if (line.type === 'output') {
+                await new Promise(r => setTimeout(r, 600)); 
+                lineDiv.innerHTML = `<span class="output">${line.text}</span>`;
+                typeWriterEl.appendChild(lineDiv);
+                currentLine++;
+                typeLine();
+                return;
+            }
+
+            lineDiv.innerHTML = '<span class="prompt">❯</span>';
+            const textNode = document.createElement('span');
+            lineDiv.appendChild(textNode);
+            typeWriterEl.appendChild(lineDiv);
+            
+            let i = 0;
+            const typeChar = () => {
+                if (i < line.text.length) {
+                    textNode.textContent += line.text.charAt(i);
+                    i++;
+                    setTimeout(typeChar, 20 + Math.random() * 40); 
+                } else {
+                    textNode.innerHTML = syntaxHighlight(line.text);
+                    currentLine++;
+                    setTimeout(typeLine, 400); 
+                }
+            };
+            
+            await new Promise(r => setTimeout(r, 300));
+            typeChar();
+        }
+
+        setTimeout(typeLine, 800);
+    </script>
+
+</body>
+</html>
